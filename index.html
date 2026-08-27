@@ -25,13 +25,6 @@
             <p id="about-me-text" class="text-gray-600 leading-relaxed"></p>
         </section>
 
-        
-        <!-- Featured Projects Grid -->
-        <section>
-            <h2 class="text-2xl font-bold text-gray-900 mb-8 border-b pb-2">Featured Projects</h2>
-            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
-        </section>
-
         <!-- Technical Toolbox Section -->
         <section class="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
             <h2 class="text-2xl font-bold text-gray-900 mb-6 border-b pb-2">Technical Toolbox</h2>
@@ -78,9 +71,13 @@
             </div>
         </section>
 
+        <!-- Featured Projects Grid -->
+        <section>
+            <h2 class="text-2xl font-bold text-gray-900 mb-8 border-b pb-2">Featured Projects</h2>
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
 
     </main>
-
 
     <!-- Footer -->
     <footer class="bg-white border-t border-gray-200 py-6 text-center text-gray-500 text-sm">
@@ -92,16 +89,25 @@
         const PORTFOLIO_DATA = {
             title: "Vigneshwari Senthil",
             subtitle: "Data & Business Analyst | Transforming Complex Workflows into Data-Driven Solutions | Delivering Actionable Power BI Dashboards & Visual Data Storytelling",
-            aboutMe: "Technically trained in C# and .NET as an Application Support Engineer, where I discovered a passion for solving real-world corporate challenges. Transitioned into a Business Analyst role because I love collaborating with stakeholders and designing end-to-end solutions. Moving into Data Analytics, driven by a love for continuous learning, deep-dive analysis, and creating impactful visual dashboards. When away from the keyboard, I am usually out exploring cycling routes or tracking down the best desserts in Aarhus.",
+            aboutMe: "Technically trained in C# and .NET as an Application Support Engineer, where I discovered a passion for solving real-world corporate challenges. Transitioned into a Business Analyst role because I love collaborating with stakeholders and designing end-to-end solutions. Moving into Data Analytics, driven by a love for continuous learning, deep-dive analysis, and creating impactful visual dashboards. When away from the keyboard, I am usually out exploring drawing, playing badminton, or tracking down the best desserts in Aarhus.",
             
             githubUrl: "https://github.com/VigS26",
             linkedinUrl: "https://www.linkedin.com/in/vigneshwari-senthil-abb317180",
             
             projects: [
                 {
+                    title: "HR Analytics Dashboard",
+                    description: "Interactive Power BI dashboard tracking employee retention, attrition rate (16.3%), salary band breakdowns, age demographics, and job satisfaction ratings across 1,400+ employees.",
+                    tags: ["Power BI", "DAX", "HR Analytics", "Data Modeling"],
+                    image: "https://raw.githubusercontent.com/VigS26/HR-Analytics-Dashboard/main/Dashboard_preview.png",
+                    githubRepo: "https://github.com/VigS26/HR-Analytics-Dashboard",
+                    liveDemo: "https://github.com/VigS26/HR-Analytics-Dashboard/blob/main/Dashboard_preview.png"
+                },
+                {
                     title: "Netflix Analytics Dashboard",
                     description: "The dashboard provides insights into content distribution by type, release year, rating, country, and language. It helps explore trends in Netflix’s global library and compare movies vs. TV shows across regions.",
                     tags: ["Power BI", "DAX", "Data Modeling"],
+                    image: "https://raw.githubusercontent.com/VigS26/Netflix-powerbi-dashboard/main/Dashboard-preview.png",
                     githubRepo: "https://github.com/VigS26/Netflix-powerbi-dashboard",
                     liveDemo: "https://github.com/VigS26/Netflix-powerbi-dashboard/blob/main/Dashboard-preview.png"
                 },
@@ -109,6 +115,7 @@
                     title: "Data Science Job Market Insights",
                     description: "Interactive Power BI dashboard analyzing hiring trends, required skills, and company profiles with custom page navigation and dynamic slicers.",
                     tags: ["Power BI", "DAX", "Data Modeling", "ETL"],
+                    image: "https://raw.githubusercontent.com/VigS26/Data-Science-Job-Market-Insights/main/Screenshot2.png",
                     githubRepo: "https://github.com/VigS26/Data-Science-Job-Market-Insights",
                     liveDemo: "https://github.com/VigS26/Data-Science-Job-Market-Insights/blob/main/Screenshot2.png"
                 },
@@ -116,6 +123,7 @@
                     title: "Data Professional Survey Breakdown",
                     description: "Interactive Power BI dashboard analyzing compensation, work/life balance, programming tool preferences, and industry entry barriers across 600+ data professionals.",
                     tags: ["Power BI", "Data Visualization", "Excel"],
+                    image: "https://raw.githubusercontent.com/VigS26/Data-Professional-Survey-Breakdown-Dashboard/main/Screenshot%202026-08-23%20192318.png",
                     githubRepo: "https://github.com/VigS26/Data-Professional-Survey-Breakdown-Dashboard",
                     liveDemo: "https://github.com/VigS26/Data-Professional-Survey-Breakdown-Dashboard/blob/main/Screenshot%202026-08-23%20192318.png"
                 }
@@ -143,20 +151,28 @@
             ).join(' ');
 
             const demoBtn = project.liveDemo ? 
-                `<a href="${project.liveDemo}" target="_blank" class="text-xs bg-blue-600 text-white px-3 py-1.5 rounded hover:bg-blue-700 transition">View Dashboard</a>` : '';
+                `<a href="${project.liveDemo}" target="_blank" class="text-xs bg-blue-600 text-white px-3 py-1.5 rounded hover:bg-blue-700 transition font-medium">View Dashboard</a>` : '';
+
+            const imageHtml = project.image ? 
+                `<div class="h-48 overflow-hidden rounded-t-xl bg-gray-100 border-b border-gray-100">
+                    <img src="${project.image}" alt="${project.title} Preview" class="w-full h-full object-cover object-top hover:scale-105 transition duration-300">
+                 </div>` : '';
 
             const card = `
-                <div class="bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition flex flex-col justify-between p-6">
-                    <div>
-                        <div class="flex flex-wrap gap-2 mb-3">${tagsHtml}</div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">${project.title}</h3>
-                        <p class="text-gray-600 text-sm mb-6">${project.description}</p>
-                    </div>
-                    <div class="flex items-center justify-between border-t pt-4 mt-auto">
-                        <a href="${project.githubRepo}" target="_blank" class="text-xs font-semibold text-gray-700 hover:text-black flex items-center gap-1">
-                            <i class="fab fa-github text-base"></i> View Repository
-                        </a>
-                        ${demoBtn}
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition flex flex-col justify-between overflow-hidden">
+                    ${imageHtml}
+                    <div class="p-6 flex flex-col justify-between flex-grow">
+                        <div>
+                            <div class="flex flex-wrap gap-2 mb-3">${tagsHtml}</div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">${project.title}</h3>
+                            <p class="text-gray-600 text-sm mb-6 leading-relaxed">${project.description}</p>
+                        </div>
+                        <div class="flex items-center justify-between border-t pt-4 mt-auto">
+                            <a href="${project.githubRepo}" target="_blank" class="text-xs font-semibold text-gray-700 hover:text-black flex items-center gap-1">
+                                <i class="fab fa-github text-base"></i> View Repository
+                            </a>
+                            ${demoBtn}
+                        </div>
                     </div>
                 </div>
             `;
